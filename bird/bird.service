@@ -1,0 +1,15 @@
+[Unit]
+Description=BIRD Internet Routing Daemon
+Documentation=http://bird.network.cz/
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/rkt run \
+		       --volume config,kind=host,source=/etc/bird.conf \
+		       --net=host \
+		       ocjtech.us/bird:0.3
+KillMode=mixed
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
